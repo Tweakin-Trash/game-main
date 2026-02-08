@@ -3,10 +3,15 @@
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 
 
 export default function GameScreen() {
+  const buttonWidth = Dimensions.get('window').width / 5;
+  const buttonLeft = Dimensions.get('window').width / 4 - buttonWidth;
+  const buttonCent = Dimensions.get('window').width / 2 - buttonWidth / 2;
+  const buttonRight = Dimensions.get('window').width / 4 * 3;
+
   return (
     <View
       style={[
@@ -39,6 +44,57 @@ export default function GameScreen() {
         <View style={{ flex: 1, backgroundColor: garbageBlack, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Ionicons name="trash" size={56} color={greyPale} />
         </View>
+      </View>
+
+      <View style={{
+        zIndex: 1,
+        position: 'absolute',
+        left: buttonLeft,
+        top: '60%',
+        backgroundColor: 'black',
+        width: buttonWidth,
+        height: buttonWidth,
+        borderRadius: 25,
+        opacity: 0.67,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <Entypo name="chevron-left" size={48} color="white" />
+      </View>
+
+      <View style={{
+        zIndex: 1,
+        position: 'absolute',
+        left: buttonCent,
+        top: '67%',
+        backgroundColor: 'black',
+        width: buttonWidth,
+        height: buttonWidth,
+        borderRadius: 25,
+        opacity: 0.67,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <Entypo name="chevron-down" size={48} color="white" />
+      </View>
+
+      <View style={{
+        zIndex: 1,
+        position: 'absolute',
+        left: buttonRight,
+        top: '60%',
+        backgroundColor: 'black',
+        width: buttonWidth,
+        height: buttonWidth,
+        borderRadius: 25,
+        opacity: 0.67,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <Entypo name="chevron-right" size={48} color="white" />
       </View>
     </View >
   );
