@@ -36,8 +36,8 @@ export default function GameScreen() {
       </View>
       <View style={[styles.container, { flex: 1, backgroundColor: blackPale, flexDirection: 'column' }]}>
         <View style={{ flex: 6, backgroundColor: blackPale }} />
-        <View style={{ flex: 1, backgroundColor: garbageBlack, display: 'flex', justifyContent: 'center', alignItems: 'center', paddingBottom: 10 }}>
-          <Ionicons name="trash" size={56} color = {greyPale} />
+        <View style={{ flex: 1, backgroundColor: garbageBlack, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Ionicons name="trash" size={56} color={greyPale} />
         </View>
       </View>
     </View >
