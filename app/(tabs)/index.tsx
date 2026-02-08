@@ -3,14 +3,16 @@
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
 
 
 export default function GameScreen() {
-  const buttonWidth = Dimensions.get('window').width / 5;
-  const buttonLeft = Dimensions.get('window').width / 4 - buttonWidth;
-  const buttonCent = Dimensions.get('window').width / 2 - buttonWidth / 2;
-  const buttonRight = Dimensions.get('window').width / 4 * 3;
+  const buttonWidth = windowWidth / 5;
+  const buttonLeft = windowWidth / 4 - buttonWidth;
+  const buttonCent = windowWidth / 2 - buttonWidth / 2;
+  const buttonRight = windowWidth / 4 * 3;
 
   return (
     <View
@@ -21,6 +23,7 @@ export default function GameScreen() {
           flexDirection: 'row',
         },
       ]}>
+      {/* Background */}
       <View style={[styles.container, { flex: 1, flexDirection: 'column' }]}>
         <View style={{ flex: 6, backgroundColor: greenPale }} />
         <View style={{ flex: 1, backgroundColor: compostGreen, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -45,57 +48,64 @@ export default function GameScreen() {
           <Ionicons name="trash" size={56} color={greyPale} />
         </View>
       </View>
-
-      <View style={{
-        zIndex: 1,
-        position: 'absolute',
-        left: buttonLeft,
-        top: '60%',
-        backgroundColor: 'black',
-        width: buttonWidth,
-        height: buttonWidth,
-        borderRadius: 25,
-        opacity: 0.67,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+      
+      <TouchableOpacity
+        // onPress={moveLeft}
+        style={{
+          zIndex: 5,
+          position: 'absolute',
+          left: buttonLeft,
+          top: '60%',
+          backgroundColor: 'black',
+          width: buttonWidth,
+          height: buttonWidth,
+          borderRadius: 25,
+          opacity: 0.67,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
         <Entypo name="chevron-left" size={48} color="white" />
-      </View>
+      </TouchableOpacity>
 
-      <View style={{
-        zIndex: 1,
-        position: 'absolute',
-        left: buttonCent,
-        top: '67%',
-        backgroundColor: 'black',
-        width: buttonWidth,
-        height: buttonWidth,
-        borderRadius: 25,
-        opacity: 0.67,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+      <TouchableOpacity
+        // onPress={quickPlace}
+        style={{
+          zIndex: 5,
+          position: 'absolute',
+          left: buttonCent,
+          top: '67%',
+          backgroundColor: 'black',
+          width: buttonWidth,
+          height: buttonWidth,
+          borderRadius: 25,
+          opacity: 0.67,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
         <Entypo name="chevron-down" size={48} color="white" />
-      </View>
+      </TouchableOpacity>
 
-      <View style={{
-        zIndex: 1,
-        position: 'absolute',
-        left: buttonRight,
-        top: '60%',
-        backgroundColor: 'black',
-        width: buttonWidth,
-        height: buttonWidth,
-        borderRadius: 25,
-        opacity: 0.67,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+      <TouchableOpacity
+        // onPress={moveRight}
+        style={{
+          zIndex: 5,
+          position: 'absolute',
+          left: buttonRight,
+          top: '60%',
+          backgroundColor: 'black',
+          width: buttonWidth,
+          height: buttonWidth,
+          borderRadius: 25,
+          opacity: 0.67,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
         <Entypo name="chevron-right" size={48} color="white" />
-      </View>
+      </TouchableOpacity>
+
     </View >
   );
 };
