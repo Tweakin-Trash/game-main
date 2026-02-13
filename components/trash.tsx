@@ -1,5 +1,6 @@
+import Entypo from "@expo/vector-icons/Entypo";
 import { useState } from "react";
-import { Dimensions, View } from "react-native";
+import { Dimensions, TouchableOpacity, View } from "react-native";
 
 
 // const { width, height } = Dimensions.get("window");
@@ -25,8 +26,29 @@ export function Trash() {
     const buttonCent = width / 2 - buttonWidth / 2;
     const buttonRight = width / 4 * 3;
 
+    // function delay(ms: number) {
+    //     return new Promise(resolve => setTimeout(resolve, ms));
+    // }
 
-    // async function gameLoop() {
+
+    // // TODO: check if the x value matches where the garbage needs to go
+    // // if not good, gameOver = true
+    // function checkCorrect(xVal: number) {
+    //     setGameOverState(true);
+    //     return;
+    // }
+
+    // function moveDown(timestamp: number) {
+    //     if (startTimeState === undefined) {
+    //         setStartTimeState(timestamp);
+    //     }
+    //     const elapsed = timestamp - startTimeState;
+    //     const shift = Math.min(speedState * elapsed, 200);
+    //     setWorldYState(worldYState + shift);
+    //     setSpeedState(speedState + ACCEL);
+    //     if (shift < height) {
+    //         requestAnimationFrame(moveDown);
+    //     }
     //     if (worldYState >= height / 7 * 5.5) {
     //         checkCorrect(worldXState);
     //         if (gameOverState) {
@@ -36,73 +58,43 @@ export function Trash() {
     //             setWorldYState(0);
     //         }
     //     }
-    //     moveDown(Date.now());
+    //     delay(2000);
     // }
 
-    function delay(ms: number) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-
-    // TODO: check if the x value matches where the garbage needs to go
-    // if not good, gameOver = true
-    function checkCorrect(xVal: number) {
-        setGameOverState(true);
-        return;
-    }
-
-    function moveDown(timestamp: number) {
-        if (startTimeState === undefined) {
-            setStartTimeState(timestamp);
-        }
-        const elapsed = timestamp - startTimeState;
-        const shift = Math.min(speedState * elapsed, 200);
-        setWorldYState(worldYState + shift);
-        setSpeedState(speedState + ACCEL);
-        if (shift < height) {
-            requestAnimationFrame(moveDown);
-        }
-        if (worldYState >= height / 7 * 5.5) {
-            checkCorrect(worldXState);
-            if (gameOverState) {
-                //MAKE A GAME OVER SCREEN
-                return;
-            } else {
-                setWorldYState(0);
-            }
-        }
-    }
 
 
 
+    // function moveLeft() {
+    //     if (worldXState - garbagePadding <= 0) {
+    //         return;
+    //     }
+    //     setWorldXState(worldXState - width / 4)
+    // }
 
-    function moveLeft() {
-        if (worldXState - garbagePadding <= 0) {
-            return;
-        }
-        setWorldXState(worldXState - width / 4)
-    }
+    // function moveRight() {
+    //     if (worldXState - garbagePadding >= width / 4 * 3) {
+    //         return;
+    //     }
+    //     setWorldXState(worldXState + width / 4)
+    // }
 
-    function moveRight() {
-        if (worldXState - garbagePadding >= width / 4 * 3) {
-            return;
-        }
-        setWorldXState(worldXState + width / 4)
-    }
+    // function quickPlace() {
+    //     setSpeedState(speedState + 50);
+    // }
 
-    function quickPlace() {
-        setSpeedState(speedState + 50);
-    }
+    // requestAnimationFrame(moveDown);
 
-    requestAnimationFrame(moveDown);
-
-    // return(<View style={{width: 50, height: 50, backgroundColor: 'black'}}/>);
 
     return (
-        <View>
-            {/* Buttons to Move left/right and quickplace
+        <View style={{
+            opacity: 100,
+            width: width,
+            height: height,
+            position: 'absolute',
+        }}>
+            {/* Buttons to Move left/right and quickplace */}
             <TouchableOpacity
-                onPress={moveLeft}
+                // onPress={moveLeft}
                 style={{
                     zIndex: 5,
                     position: 'absolute',
@@ -121,7 +113,7 @@ export function Trash() {
             </TouchableOpacity>
 
             <TouchableOpacity
-                onPress={quickPlace}
+                // onPress={quickPlace}
                 style={{
                     zIndex: 5,
                     position: 'absolute',
@@ -140,7 +132,7 @@ export function Trash() {
             </TouchableOpacity>
 
             <TouchableOpacity
-                onPress={moveRight}
+                // onPress={moveRight}
                 style={{
                     zIndex: 5,
                     position: 'absolute',
@@ -176,7 +168,7 @@ export function Trash() {
                         borderRadius: 5,
                     }}></View>
 
-            </View> */}
+            </View>
         </View>
     );
 
