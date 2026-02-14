@@ -1,3 +1,5 @@
+// FIGURE OUT HOW TO USE useEffect, instead of useState (you still might need useState)
+
 import Entypo from "@expo/vector-icons/Entypo";
 import { useState } from "react";
 import { Dimensions, TouchableOpacity, View } from "react-native";
@@ -8,7 +10,7 @@ import { Dimensions, TouchableOpacity, View } from "react-native";
 const ACCEL = 0.01;
 const SPEED = 50;
 const STARTY = 0;
-
+let startTime: number | undefined = undefined;
 
 export function Trash() {
     const { width, height } = Dimensions.get("window");
@@ -27,7 +29,8 @@ export function Trash() {
 
     const garbagePadding = 5;
 
-    const [startTimeState, setStartTimeState] = useState<number | undefined>(0);
+    const [startTime, setStartTime] = useState<undefined | number>(undefined);
+    
 
     
 
@@ -43,14 +46,18 @@ export function Trash() {
         return;
     }
 
-    async function moveDown(timestamp: number) {
-        if (startTimeState === undefined) {
-            setStartTimeState(timestamp);
+    function moveDown(timestamp: number) {
+        if (startTime === undefined) {
+            console.log("startTime was", startTime);
+            setStartTime(timestamp);
+            console.log("startTime is", startTime);
         }
-        const elapsed = timestamp - startTimeState!;
+        const elapsed = timestamp - startTime!;
+        // console.log(startTime);
         
         const shift = Math.min(speedState * elapsed / 500, height);
-        // console.log("aya -> shift ", shift);
+        // console.log("shift", shift)
+
         setWorldYState(shift);
         setSpeedState(speedState);
         // if (shift < height) {
@@ -66,7 +73,9 @@ export function Trash() {
             } else {
                 setWorldYState(0);
                 setSpeedState(SPEED);
-                setStartTimeState(undefined);
+                setStartTime(undefined);
+                console.log(startTime);
+                console.log("stat", startTime);
             }
         }
     }
