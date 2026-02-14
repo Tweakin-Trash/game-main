@@ -6,25 +6,30 @@ import { Dimensions, TouchableOpacity, View } from "react-native";
 // const { width, height } = Dimensions.get("window");
 
 const ACCEL = 0.01;
+const SPEED = 50;
+const STARTY = 0;
+
 
 export function Trash() {
     const { width, height } = Dimensions.get("window");
+    const buttonWidth = width / 5;
+    const buttonLeft = width / 4 - buttonWidth;
+    const buttonCent = width / 2 - buttonWidth / 2;
+    const buttonRight = width / 4 * 3;
+    const STARTX = width / 2 - 50 / 2; // 50 / 2 is the object's width / 2
 
-    const [speedState, setSpeedState] = useState(0);
+    const [speedState, setSpeedState] = useState(SPEED);
 
     const [worldYState, setWorldYState] = useState(0);
-    const [worldXState, setWorldXState] = useState(0);
+    const [worldXState, setWorldXState] = useState(STARTX);
 
     const [gameOverState, setGameOverState] = useState(false);
 
     const garbagePadding = 5;
 
-    const [startTimeState, setStartTimeState] = useState(0);
+    const [startTimeState, setStartTimeState] = useState<number | undefined>(0);
 
-    const buttonWidth = width / 5;
-    const buttonLeft = width / 4 - buttonWidth;
-    const buttonCent = width / 2 - buttonWidth / 2;
-    const buttonRight = width / 4 * 3;
+    
 
     function delay(ms: number) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -34,21 +39,25 @@ export function Trash() {
     // TODO: check if the x value matches where the garbage needs to go
     // if not good, gameOver = true
     function checkCorrect(xVal: number) {
-        setGameOverState(true);
+        setGameOverState(false);
         return;
     }
 
-    function moveDown(timestamp: number) {
+    async function moveDown(timestamp: number) {
         if (startTimeState === undefined) {
             setStartTimeState(timestamp);
         }
-        const elapsed = timestamp - startTimeState;
-        const shift = Math.min(speedState * elapsed, 200);
-        setWorldYState(worldYState + shift);
-        setSpeedState(speedState + ACCEL);
-        if (shift < height) {
+        const elapsed = timestamp - startTimeState!;
+        
+        const shift = Math.min(speedState * elapsed / 500, height);
+        // console.log("aya -> shift ", shift);
+        setWorldYState(shift);
+        setSpeedState(speedState);
+        // if (shift < height) {
+            // await delay(1000);
             requestAnimationFrame(moveDown);
-        }
+        // }
+
         if (worldYState >= height / 7 * 5.5) {
             checkCorrect(worldXState);
             if (gameOverState) {
@@ -56,9 +65,10 @@ export function Trash() {
                 return;
             } else {
                 setWorldYState(0);
+                setSpeedState(SPEED);
+                setStartTimeState(undefined);
             }
         }
-        delay(2000);
     }
 
 
