@@ -84,7 +84,7 @@ export function Trash() {
 
     // requestAnimationFrame(moveDown);
 
-
+    // Returns Buttons
     return (
         <View style={{
             opacity: 100,
