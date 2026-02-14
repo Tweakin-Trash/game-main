@@ -26,63 +26,63 @@ export function Trash() {
     const buttonCent = width / 2 - buttonWidth / 2;
     const buttonRight = width / 4 * 3;
 
-    // function delay(ms: number) {
-    //     return new Promise(resolve => setTimeout(resolve, ms));
-    // }
+    function delay(ms: number) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
 
-    // // TODO: check if the x value matches where the garbage needs to go
-    // // if not good, gameOver = true
-    // function checkCorrect(xVal: number) {
-    //     setGameOverState(true);
-    //     return;
-    // }
+    // TODO: check if the x value matches where the garbage needs to go
+    // if not good, gameOver = true
+    function checkCorrect(xVal: number) {
+        setGameOverState(true);
+        return;
+    }
 
-    // function moveDown(timestamp: number) {
-    //     if (startTimeState === undefined) {
-    //         setStartTimeState(timestamp);
-    //     }
-    //     const elapsed = timestamp - startTimeState;
-    //     const shift = Math.min(speedState * elapsed, 200);
-    //     setWorldYState(worldYState + shift);
-    //     setSpeedState(speedState + ACCEL);
-    //     if (shift < height) {
-    //         requestAnimationFrame(moveDown);
-    //     }
-    //     if (worldYState >= height / 7 * 5.5) {
-    //         checkCorrect(worldXState);
-    //         if (gameOverState) {
-    //             //MAKE A GAME OVER SCREEN
-    //             return;
-    //         } else {
-    //             setWorldYState(0);
-    //         }
-    //     }
-    //     delay(2000);
-    // }
-
-
+    function moveDown(timestamp: number) {
+        if (startTimeState === undefined) {
+            setStartTimeState(timestamp);
+        }
+        const elapsed = timestamp - startTimeState;
+        const shift = Math.min(speedState * elapsed, 200);
+        setWorldYState(worldYState + shift);
+        setSpeedState(speedState + ACCEL);
+        if (shift < height) {
+            requestAnimationFrame(moveDown);
+        }
+        if (worldYState >= height / 7 * 5.5) {
+            checkCorrect(worldXState);
+            if (gameOverState) {
+                //MAKE A GAME OVER SCREEN
+                return;
+            } else {
+                setWorldYState(0);
+            }
+        }
+        delay(2000);
+    }
 
 
-    // function moveLeft() {
-    //     if (worldXState - garbagePadding <= 0) {
-    //         return;
-    //     }
-    //     setWorldXState(worldXState - width / 4)
-    // }
 
-    // function moveRight() {
-    //     if (worldXState - garbagePadding >= width / 4 * 3) {
-    //         return;
-    //     }
-    //     setWorldXState(worldXState + width / 4)
-    // }
 
-    // function quickPlace() {
-    //     setSpeedState(speedState + 50);
-    // }
+    function moveLeft() {
+        if (worldXState - garbagePadding <= 0) {
+            return;
+        }
+        setWorldXState(worldXState - width / 4)
+    }
 
-    // requestAnimationFrame(moveDown);
+    function moveRight() {
+        if (worldXState - garbagePadding >= width / 4 * 3) {
+            return;
+        }
+        setWorldXState(worldXState + width / 4)
+    }
+
+    function quickPlace() {
+        setSpeedState(speedState + 50);
+    }
+
+    requestAnimationFrame(moveDown);
 
     // Returns Buttons
     return (
